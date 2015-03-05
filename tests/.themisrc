@@ -1,0 +1,37 @@
+" Helpers: {{{1
+
+let s:scriptnames_output = ""
+let s:_scriptnames = []
+function! s:scriptnames () abort
+  redir => s:scriptnames_output
+  silent scriptnames
+  redir END
+  let l:lines = split(s:scriptnames_output, "\n")
+  let s:_scriptnames = map(l:lines, 'matchlist(v:val, ''^\s*\(\d\+\):\s*\(.\+\)$'')')
+  return s:_scriptnames
+endfunction
+
+function! ForceLoad(namespace) abort
+  try
+    cal call(a:namespace . '#load', [])
+  catch
+  endtry
+endfunction
+
+function! GetSID(path) abort
+  let l:matches = filter(copy(s:scriptnames()), 'v:val[2] =~ ''^.*' . a:path .'$''')
+  if len(l:matches) < 1
+    throw 'No matches found for path: ' . a:path
+  endif
+  if len(l:matches) > 1
+    throw 'Multiple matches found for path: ' . a:path
+  endif
+  return str2nr(l:matches[0][1])
+endfunction
+
+function! ScriptCall(sid, name, ...) abort
+  return call('<SNR>' . a:sid . '_' . a:name, a:000)
+endfunction
+
+" Misc: {{{1
+" vim: set ft=vim ts=2 sw=2 tw=78 et fdm=marker:

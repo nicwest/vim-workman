@@ -7,13 +7,15 @@ workman normal mode or use workman in insert mode on a qwerty layout.
 
 langmap with function keys!
 
+**still a work in progress, so will probably break alot**
+
 
 Commands
 --------
 
 ```vim
-Workman       "maps a qwerty layout keyboard to workmap in insert mode 
-Workman!      "maps a qwerty layout keyboard to workmap in normal mode (why?!?)
+Workman       "maps a qwerty layout keyboard to workman in insert mode 
+Workman!      "maps a qwerty layout keyboard to workman in normal mode
 
 Qwerty        "maps a workman layout keyboard to qwerty in insert mode 
 Qwerty!       "maps a workman layout keyboard to qwerty in normal mode 
@@ -50,7 +52,6 @@ Notes
 
 this plugin was originally this gist [MattWoelk/887861][gist] which was in turn
 this script [colquer][colquer]
-
 
 [workman]: https://github.com/ojbucao/Workman
 [vim-themis]: https://github.com/thinca/vim-themis

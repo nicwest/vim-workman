@@ -59,7 +59,7 @@ endfunction
 " Commands: {{{1
 command! -bang Workman :call s:workman("<bang>" == "!") 
 command! -bang Qwerty :call s:qwerty("<bang>" == "!") 
-command! WorkmanUndo :call workman#unmap()
+command! WorkmanUndo :call workman#undo()
 
 " Init: {{{1
 if g:workman_normal_workman

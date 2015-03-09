@@ -61,7 +61,7 @@ function! s:normal_map(to, from) abort
   let l:langmap = ''
   for [to_key, from_key] in s:zip(a:to, a:from)
     let l:langmap .= s:escape_char(from_key) . s:escape_char(to_key) . ","
-    if tolower(from_key) ==# from_key && to_key !=# from_key
+    if has("patch502") && &langnoremap && tolower(from_key) ==# from_key && to_key !=# from_key
       let l:current_control_map = maparg("<C-" . from_key . ">", "", 0, 1)
       if l:current_control_map != {}
         call add(s:remap, [

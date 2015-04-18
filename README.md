@@ -9,6 +9,8 @@ langmap with function keys!
 
 **still a work in progress, so will probably break alot**
 
+**Note:** normal mode maps require the `langnoremap` setting introduced in
+7.4.502, otherwise sanity doesn't really happen much.
 
 Commands
 --------

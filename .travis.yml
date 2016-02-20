@@ -11,7 +11,7 @@ branches:
 
 install:
   - sudo apt-get update -q
-  - sudo apt-get install vim-gtk
+  - sudo apt-get install -y vim-gtk
 
 before_script:
   - vim --version

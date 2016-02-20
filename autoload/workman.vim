@@ -20,18 +20,6 @@ let s:workman = [
       \ 'A', 'S', 'H', 'T', 'G', 'Y', 'N', 'E', 'O', 'I',
       \ 'Z', 'X', 'M', 'C', 'V', 'K', 'L' ]
 
-" Undo: {{{1
-let s:remap = []
-
-function! s:get_remap() abort
-  return s:remap
-endfunction
-
-function! s:reset_remap() abort
-  let s:remap = []
-endfunction
-
-
 " Private Functions: {{{1
 function! s:zip(a, b) abort
   return map(copy(a:a), '[v:val, a:b[v:key]]')
@@ -58,24 +46,10 @@ function! s:get_recursive_key(key, to, from) abort
 endfunction
 
 function! s:normal_map(to, from) abort
+  set langnoremap
   let l:langmap = ''
   for [to_key, from_key] in s:zip(a:to, a:from)
     let l:langmap .= s:escape_char(from_key) . s:escape_char(to_key) . ","
-    if tolower(from_key) ==# from_key && to_key !=# from_key
-      let l:current_control_map = maparg("<C-" . from_key . ">", "", 0, 1)
-      if l:current_control_map != {}
-        call add(s:remap, [
-              \ "<C-" . toupper(s:get_recursive_key(from_key, a:to, a:from)) . ">",
-              \ l:current_control_map])
-      endif
-      execute "noremap <C-" . toupper(from_key) . "> <C-" . toupper(to_key) . ">"
-    endif
-  endfor
-  for [l:map_key, l:map] in s:remap
-    let l:mode = l:map.noremap ? l:map.mode . "noremap " : l:map.mode . "map "
-    let l:silent = l:map.silent ? "<silent> ": ""
-    let l:buffer = l:map.buffer ? "<buffer> ": ""
-    execute l:mode . l:silent . l:buffer . l:map_key . " " . l:map.rhs
   endfor
   execute 'set langmap=' . l:langmap[:-2]
 endfunction
@@ -87,21 +61,7 @@ function! s:undo_map() abort
       execute "unmap!" l:key
     catch
     endtry
-    try
-    execute "unmap <C-" . l:key . ">"
-    catch
-    endtry
   endfor
-  try
-    for [_, l:map] in s:remap
-      let l:mode = l:map.noremap ? l:map.mode . "noremap " : l:map.mode . "map "
-      let l:silent = l:map.silent ? "<silent> ": ""
-      let l:buffer = l:map.buffer ? "<buffer> ": ""
-      execute l:mode . l:silent . l:buffer . l:map.lhs . " " . l:map.rhs
-    endfor
-  finally
-    call s:reset_remap()
-  endtry
 endfunction
 
 " Library Interface: {{{1

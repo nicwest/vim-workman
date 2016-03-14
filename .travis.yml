@@ -9,9 +9,10 @@ branches:
     - /^feat(ure)?-.*$/
     - /^(hot)?fix-.*$/
 
-install:
+before_install:
+  - sudo add-apt-repository ppa:pkg-vim/vim-daily -y
   - sudo apt-get update -q
-  - sudo apt-get install -y vim-gtk
+  - sudo apt-get install -y vim
 
 before_script:
   - vim --version

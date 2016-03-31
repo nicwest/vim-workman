@@ -63,19 +63,19 @@ command! WorkmanUndo :call workman#undo()
 
 " Init: {{{1
 if g:workman_normal_workman
-  call s:workman(1) 
+  call workman#normal_workman()
 endif
 
 if g:workman_insert_workman
-  call s:workman(0) 
+  call workman#insert_workman()
 endif
 
 if g:workman_normal_qwerty
-  call s:qwerty(1) 
+  call workman#normal_querty()
 endif
 
 if g:workman_insert_qwerty
-  call s:qwerty(0) 
+  call workman#insert_querty()
 endif
 
 " Teardown: {{{1

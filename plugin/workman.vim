@@ -62,22 +62,25 @@ command! -bang Qwerty :call s:qwerty("<bang>" == "!")
 command! WorkmanUndo :call workman#undo()
 
 " Init: {{{1
-if g:workman_normal_workman
-  call workman#normal_workman()
-endif
+func s:init() abort
+  if g:workman_normal_workman
+    call workman#normal_workman()
+  endif
 
-if g:workman_insert_workman
-  call workman#insert_workman()
-endif
+  if g:workman_insert_workman
+    call workman#insert_workman()
+  endif
 
-if g:workman_normal_qwerty
-  call workman#normal_querty()
-endif
+  if g:workman_normal_qwerty
+    call workman#normal_qwerty()
+  endif
 
-if g:workman_insert_qwerty
-  call workman#insert_querty()
-endif
+  if g:workman_insert_qwerty
+    call workman#insert_qwerty()
+  endif
+endfunc
 
+autocmd VimEnter * call <SID>init()
 " Teardown: {{{1
 let &cpo = s:save_cpo
 

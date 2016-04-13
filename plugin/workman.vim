@@ -62,7 +62,7 @@ command! -bang Qwerty :call s:qwerty("<bang>" == "!")
 command! WorkmanUndo :call workman#undo()
 
 " Init: {{{1
-func s:init() abort
+function! s:init() abort
   if g:workman_normal_workman
     call workman#normal_workman()
   endif

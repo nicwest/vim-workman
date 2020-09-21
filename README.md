@@ -29,13 +29,13 @@ Settings
 --------
 
 These go in your .vimrc or similar so you don't have to use the commands all the
-time. They are all off by default.
+time. They are all off by default. Set to 0 to disable or 1 to enable.
 
 ```vim
-g:workman_normal_workman = 0
-g:workman_insert_workman = 0
-g:workman_normal_qwerty = 0
-g:workman_insert_qwerty = 0
+let g:workman_normal_workman = 0
+let g:workman_insert_workman = 0
+let g:workman_normal_qwerty = 0
+let g:workman_insert_qwerty = 0
 ```
 
 Tests

@@ -23,6 +23,10 @@ function! s:suite.after_each() abort
       execute "unmap" l:char
     catch
     endtry
+    try
+      execute "unmap <C-" . l:char . ">"
+    catch
+    endtry
   endfor
   set langmap=
   norm! gg"_dG
@@ -74,6 +78,11 @@ function! s:suite.normal_map_sets_langmap_multiple_keys() abort
   call s:assert.equals(&langmap, 'ui,UI')
 endfunction
 
+function! s:suite.normal_map_maps_control_key_combinations() abort
+  call ScriptCall(s:sid, 'normal_map', ['D'], ['H'])
+  call s:assert.equals(maparg('<C-H>', 'n'), '<C-D>')
+endfunction
+
 function! s:suite.get_recursive_key_returns_correct_key() abort
   let l:to = ['t', 'f', 'r']
   let l:from = ['r', 't', 'f']
@@ -95,4 +104,10 @@ function! s:suite.undo_unmaps_insert_bindings() abort
   map! t f
   call ScriptCall(s:sid, 'undo_map')
   call s:assert.equals(maparg('t', 'i', 0, 1), {})
+endfunction
+
+function! s:suite.undo_unmaps_normal_control_key_combinations() abort
+  map <C-A> <C-B>
+  call ScriptCall(s:sid, 'undo_map')
+  call s:assert.equals(maparg('<C-A>', 'n', 0, 1), {})
 endfunction

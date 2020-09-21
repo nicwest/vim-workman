@@ -24,7 +24,7 @@ function! s:suite.after_each() abort
     catch
     endtry
     try
-      execute "unmap <C-" . l:char . ">" 
+      execute "unmap <C-" . l:char . ">"
     catch
     endtry
   endfor

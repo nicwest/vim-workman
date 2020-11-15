@@ -4,7 +4,6 @@ test:
 	vim-themis/bin/themis --reporter dot test
 
 setup:
-	docker pull citizenstig/httpbin
 	git clone git@github.com:thinca/vim-themis.git
 	git clone git@github.com:syngan/vim-vimlint
 	git clone git@github.com:ynkdir/vim-vimlparser

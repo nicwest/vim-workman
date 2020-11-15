@@ -22,7 +22,7 @@ jobs:
           path: vim-themis
       - uses: actions/checkout@v2
         with:
-          repository: syngan/vim-lint
+          repository: syngan/vim-vimlint
           path: vim-vimlint
       - uses: actions/checkout@v2
         with:

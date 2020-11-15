@@ -1,0 +1,21 @@
+name: test
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  latest:
+    runs-on: thinca/vim:latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: setup
+        run: |
+          vim --version
+          make setup
+      - name: lint
+        run: make lint
+      - name: test
+        run: make test

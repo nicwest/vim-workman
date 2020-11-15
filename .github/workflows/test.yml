@@ -31,4 +31,4 @@ jobs:
       - name: lint
         run: ./vim-vimlint/bin/vimlint.sh -l ./vim-vimlint -p ./vim-vimlparser -e EVL102.l:_=1 -c func_abort=1 autoload ftdetect plugin syntax
       - name: test
-        run: vim-themis/bin/themis --reporter dot test
+        run: vim-themis/bin/themis --reporter dot tests

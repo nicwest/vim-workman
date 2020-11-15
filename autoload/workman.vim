@@ -27,7 +27,7 @@ endfunction
 
 function! s:insert_map(to, from) abort
   for [to_key, from_key] in s:zip(a:to, a:from)
-    execute "noremap!" from_key to_key 
+    execute "noremap!" from_key to_key
   endfor
 endfunction
 
@@ -52,6 +52,10 @@ function! s:normal_map(to, from) abort
     let l:langmap .= s:escape_char(from_key) . s:escape_char(to_key) . ","
   endfor
   execute 'set langmap=' . l:langmap[:-2]
+
+  for [to_key, from_key] in s:zip(a:to, a:from)
+    execute "noremap <C-" . from_key . "> <C-" . to_key . ">"
+  endfor
 endfunction
 
 function! s:undo_map() abort
@@ -59,6 +63,11 @@ function! s:undo_map() abort
   for l:key in s:qwerty
     try
       execute "unmap!" l:key
+    catch
+    endtry
+
+    try
+      execute "unmap <C-" . key . ">"
     catch
     endtry
   endfor

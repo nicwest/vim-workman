@@ -15,7 +15,7 @@ jobs:
       - name: setup
         run: |
           apt update
-          apt install make git
+          apt install -y make git
           vim --version
           make setup
       - name: lint

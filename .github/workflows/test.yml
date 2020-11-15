@@ -14,14 +14,17 @@ jobs:
       - run: vim --version
       - uses: actions/checkout@v2
       - uses: actions/checkout@v2
-        repository: thinca/vim-themis
-        path: vim-themis
+        with:
+          repository: thinca/vim-themis
+          path: vim-themis
       - uses: actions/checkout@v2
-        repository: syngan/vim-lint
-        path: vim-vimlint
+        with:
+          repository: syngan/vim-lint
+          path: vim-vimlint
       - uses: actions/checkout@v2
-        repository: ynkdir/vim-vimlparser
-        path: vim-vimlparser
+        with:
+          repository: ynkdir/vim-vimlparser
+          path: vim-vimlparser
       - name: lint
         run: ./vim-vimlint/bin/vimlint.sh -l ./vim-vimlint -p ./vim-vimlparser -e EVL102.l:_=1 -c func_abort=1 autoload ftdetect plugin syntax
       - name: test

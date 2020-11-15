@@ -9,12 +9,12 @@ on:
 jobs:
   latest:
     runs-on: ubuntu-latest
-    container: thinca/vim:latest
+    container: thinca/vim:latest-ubuntu
     steps:
       - uses: actions/checkout@v2
       - name: setup
         run: |
-          apt install make git
+          #apt install make git
           vim --version
           make setup
       - name: lint

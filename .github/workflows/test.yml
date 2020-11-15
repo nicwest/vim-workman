@@ -8,7 +8,8 @@ on:
 
 jobs:
   latest:
-    runs-on: thinca/vim:latest
+    runs-on: ubuntu-latest
+    container: thinca/vim:latest
     steps:
       - uses: actions/checkout@v2
       - name: setup

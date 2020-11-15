@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/nicwest/vim-workman.svg)](https://travis-ci.org/nicwest/vim-workman)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/nicwest/vim-workman/test)
 vim-workman
 ===========
 
